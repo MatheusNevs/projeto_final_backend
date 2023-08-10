@@ -51,3 +51,4 @@ end
 gem 'devise'
 gem 'simple_token_authentication'
 gem 'panko_serializer'
+gem 'figaro'
