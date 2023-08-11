@@ -5,6 +5,6 @@ FactoryBot.define do
     email {'teste@gmail.com'}
     password {'123456'}
     description {'testetestetestetestetestetestetesteteste'}
-    is_admin {true}
+    is_admin {false}
   end
 end

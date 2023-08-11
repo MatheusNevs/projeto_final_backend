@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     acts_as_token_authentication_handler_for User, except: [:login, :create]
-    before_action :is_admin_authentication, only: [:index]
+    before_action :is_admin_authentication, only: [:index, :delete]
 
     def login
         user = User.find_by(email: params[:email])
@@ -17,12 +17,15 @@ class UsersController < ApplicationController
         render json: array_serializer(User.all), status: :ok
     rescue StandardError => e
         render json: {error:e.message}, status: :bad_request
+    rescue 
     end
     
     def show
-        user = User.find_by(email: user_params[:email])
+        user = current_user
         render json: serializer(user), status: :ok
-    rescue => e
+    rescue StandardError => e
+        render json: {error: e.message}, status: :bad_request
+    rescue RecordNotFound => e
         render json: {error: e.message}, status: :not_found
     end
 
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
         end
         render json: serializer(current_user), status: :ok 
     rescue StandardError => e
-        render json: {error: e.message}, status: :ok
+        render json: {error: e.message}, status: :bad_request
     end
 
     def delete
@@ -70,7 +73,7 @@ class UsersController < ApplicationController
     private
     
     def user_params
-        params.require(:user).permit(:name, :last_name, :email, :is_admin, :password,:id, :description
+        params.require(:user).permit(:name, :last_name, :email, :is_admin, :password,:description, :id
         )
     end
 
