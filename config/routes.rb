@@ -14,5 +14,14 @@ Rails.application.routes.draw do
       patch 'add_picture', to: 'users#add_picture'
       delete 'delete', to: 'users#delete'
     end
+
+    scope 'posts' do
+      get '', to: 'posts#index'
+      get ':id', to: 'posts#show'
+      post 'create', to: 'posts#create'
+      patch 'update/:id', to: 'posts#update'
+      delete 'delete/:id', to: 'posts#delete'
+    end
+
   end
 end
