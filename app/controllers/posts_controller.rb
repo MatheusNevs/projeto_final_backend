@@ -19,6 +19,10 @@ class PostsController < ApplicationController
         user = current_user
         post = Post.new({title: params[:title], description: params[:description],post_image: params[:image], user_id: user.id})
         post.save!
+        params[:categories].each do |category|
+            post_category = PostCategory.new({"post_id": post.id, "category_id": category})
+            post_category.save!
+        end
         render json: serializer(post), status: :created
     rescue StandardError => e
         render json: { error: e}, status: :bad_request
