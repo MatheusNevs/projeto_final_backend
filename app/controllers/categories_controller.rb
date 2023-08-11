@@ -52,6 +52,6 @@ class CategoriesController < ApplicationController
     end
 
     def serializer(category)
-        CategorySerializer.new.serialize_to_json(user)
+        CategorySerializer.new.serialize_to_json(category)
     end
 end
