@@ -1,24 +1,15 @@
-# README
+Repositório para projeto final (back-end) para processo trainee 23.1 da EJ Struct 🚀🚀🚀
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para rodar todas as dependências:
 
-Things you may want to cover:
+```
+bundle
+```
 
-* Ruby version
+Para iniciar o servidor:
 
-* System dependencies
+```
+rails s
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Para mais informações, leia a documentação do [rails](https://guides.rubyonrails.org).
